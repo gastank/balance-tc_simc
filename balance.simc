@@ -28,10 +28,9 @@ actions+=/starsurge,if=buff.eclipse_solar.up&spell_targets.starfire=1|buff.eclip
 actions+=/new_moon,if=buff.eclipse_lunar.up|(charges=2&recharge_time<5)|charges=3
 actions+=/half_moon,if=buff.eclipse_lunar.up|(charges=2&recharge_time<5)|charges=3
 actions+=/full_moon,if=buff.eclipse_lunar.up|(charges=2&recharge_time<5)|charges=3
-actions+=/wrath,if=buff.eclipse_solar.up&(!buff.eclipse_lunar.up|spell_targets.starfire=1)
+actions+=/wrath,if=buff.eclipse_solar.up&(!buff.eclipse_lunar.up|spell_targets.starfire=1)&spell_targets<=2
 actions+=/warrior_of_elune
-actions+=/starfire,if=buff.eclipse_lunar.up
-actions+=/starfire,if=eclipse.state=1|eclipse.state=0&spell_targets=1
+actions+=/starfire,if=buff.eclipse_lunar.up|eclipse.state=1|eclipse.state=0&spell_targets=1|buff.eclipse_solar.up&spell_targets>2
 actions+=/wrath
 
 desired_targets=1
