@@ -33,7 +33,6 @@
           let ifdoc = child.contentWindow.document;
           let iftype = ifdoc.contentType || ifdoc.mimeType;
           if (iftype != 'text/html') {
-            ifdoc.body.style.backgroundColor = '#242424';
             ifdoc.body.style.color = '#FF7D0A';
           }
         }
