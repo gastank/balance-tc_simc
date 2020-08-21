@@ -13,6 +13,7 @@ apikey = args.apikey
 post_url = 'https://mimiron.raidbots.com/sim'
 get_url = 'https://mimiron.raidbots.com/api/job/'
 report_url = 'https://mimiron.raidbots.com/simbot/report/'
+clean_url = 'https://www.raidbots.com/reports/'
 
 profile = apl = combo = sets = ""
 jso = {}
@@ -28,7 +29,7 @@ with open('leg_x_cov.txt', 'r') as fp:
 
 sets = open('talent_profiles.txt', 'r')
 betabot = open('by_talent.html', 'w')
-betabot.write('<html><script>function newlink(e) {if (e.target.tagName === \'A\') {parent.setTitle(e.target.textContent);}} document.addEventListener(\'click\'", newlink, false);</script><style>body {margin-left:0; margin-right:0} a {color:#FF7D0A; text-decoration:none; font-family:monospace; font-size:large;}</style><body><div style=\"columns:5;\"><div style=\"display:inline-block;\">\n')
+betabot.write('<html><script>function newlink(e) {if (e.target.tagName === \'A\') {parent.setTitle(e.target.textContent.substring(0, 15));}} document.addEventListener(\'click\', newlink, false);</script><style>body {margin-left:0; margin-right:0} a {color:#FF7D0A; text-decoration:none; font-family:monospace; font-size:large;}</style><body><div style=\"columns:5;\"><div style=\"display:inline-block;\">\n')
 
 for line in sets:
     if line == '\n':
@@ -47,6 +48,7 @@ for line in sets:
 
     sim_url = report_url + simID
     print(sim_url)
+    time.sleep(5)
 
     while True:
         get = requests.get(get_url + simID)
@@ -63,10 +65,8 @@ for line in sets:
         dps_list.append(actor['collected_data']['dps']['mean'])
 
     dps_max = max(dps_list)
-    name = name.strip('\"') + ' ' + f'{dps_max:.2f}'
-    sim_url = sim_url + '/index.html'
-    #html = '<div><a href="' + sim_url + '">' + name.replace('_','&nbsp;') + ' ' + f'{dps_max:.2f}' + '</a></div>\n'
-    html = '<div><a href="' + sim_url + '">' + name + '</a></div>\n'
+    name = name.strip('\"')
+    html = '<div><a href=\"' + clean_url + simID + '/index.html\">' + name + ' ' + f'{dps_max:.2f}' + '</a></div>\n'
     betabot.write(html)
     jso[name] = simID
 

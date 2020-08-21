@@ -16,7 +16,7 @@ report_url = 'https://mimiron.raidbots.com/simbot/report/'
 profile = apl = sets = ""
 
 covs = ['kyrian', 'night_fae', 'venthyr', 'necrolord']
-legs = {'oneth':7087, 'pulsar':7088, 'dream':7108, 'lycaras':7110}
+legs = {'oneth':7087, 'pulsar':7088, 'dream':7108, 'lycaras':7110, 'boat':7107}
 
 with open('sandbag.txt', 'r') as fp:
     profile = fp.read()
@@ -40,6 +40,7 @@ for cov in covs:
 
         sim_url = report_url + simID
         print(sim_url)
+        time.sleep(5)
 
         while True:
             get = requests.get(get_url + simID)
@@ -56,8 +57,8 @@ for cov in covs:
             dps_list[actor['name']] = actor['mean']
 
         dps_max = max(dps_list, key=dps_list.get)
-        name2 = cov.rjust(9,'_') + '-' + leg.ljust(7,'_')
-        html = '<div><a href=\"chart.html?simid=' + simID + '\" target=\"simframe\">' + name2.replace('_', '&nbsp;') + '|' + str(dps_max).replace('_', '&nbsp;') + ' ' + f'{dps_list[dps_max]:.2f}' + '</a></div>\n'
+        name2 = cov.rjust(9,'$') + '-' + leg.ljust(7,'$')
+        html = '<div><a href=\"chart.html?simid=' + simID + '\" target=\"simframe\">' + name2.replace('$', '&nbsp;') + '|' + str(dps_max).replace('_', '&nbsp;') + ' ' + f'{dps_list[dps_max]:.2f}' + '</a></div>\n'
         buffer[html] = dps_list[dps_max]
 
 sorted_buf = sorted(buffer.items(), key=lambda x: x[1], reverse=True)
