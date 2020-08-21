@@ -6,8 +6,9 @@
             var param = new URLSearchParams(window.location.search);
             var filename = param.get('file');
             fetch('/faq.txt')
-            .then(resp => {
-                document.getElementById('content').innerHTML = marked(resp.text());
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('content').innerHTML = marked(text);
             });
         </script>
     </body>
