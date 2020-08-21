@@ -1,10 +1,6 @@
 <html>
     <body>
         <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-        <script>
-            let faq = document.getElementById('faq').innerHTML;
-            document.getElementById('faq').innerHTML = marked(faq);
-        </script>
         <div id='faq'>
 1. What's new?
     * Legendary & covenant changes from the August 19th build 9.0.1.35598 are included.
@@ -56,5 +52,9 @@
 15. What about _____ ?
     * Submit an issue report with the `Bugs/Improvements/Questions` link.
         </div>
+        <script>
+            let faq = document.getElementById('faq').innerHTML;
+            faq = marked(faq);
+        </script>
     </body>
 </html>
