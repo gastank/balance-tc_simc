@@ -53,8 +53,8 @@
     * Submit an issue report with the `Bugs/Improvements/Questions` link.
         </div>
         <script>
-            let faq = document.getElementById('faq').innerHTML;
-            faq = marked(faq);
+            let faq = document.getElementById('faq');
+            faq.innerHTML = marked(faq.innerHTML);
         </script>
     </body>
 </html>
