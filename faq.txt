@@ -18,7 +18,7 @@
 
 6. Are the sims updated for _____ ?
     * At the top of the HTML report, in the SimulationCraft banner, you will find the git build code.
-    * Goto http://github.com/simulationcraft/simc/commits/<enter git build code here> to see all the changes to SimC that have been incorporated into the sim.
+    * Goto `http://github.com/simulationcraft/simc/commits/<enter git build code here>` to see all the changes to SimC that have been incorporated into the sim.
 
 7. What are the base stats used in the sims?
     * The base profile can be found in `sandbag.txt`
