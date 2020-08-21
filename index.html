@@ -15,7 +15,9 @@
         let htmlString = '<ul style=\"font-family:monospace; font-size:large;\">';
         for (let file of data) {
           let ext = file.name.split('.').pop();
-          if (ext == 'txt' || ext =='rar') {
+          if (ext == 'txt') {
+            htmlString += `<li><a href="md.html?file=${file.name}" target="simframe" onclick="setTitle('${file.name}')">${file.name}</a></li>`;
+          } else if (ext == 'rar') {
             htmlString += `<li><a href="${file.name}" target="simframe" onclick="setTitle('${file.name}')">${file.name}</a></li>`;
           }
         }

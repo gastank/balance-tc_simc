@@ -6,7 +6,6 @@
         <script>
             var param = new URLSearchParams(window.location.search);
             var filename = param.get('file');
-            //fetch('/faq.txt')
             fetch(filename)
             .then(response => response.text())
             .then(text => {
