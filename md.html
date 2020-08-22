@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
     <style>body {color:#FF7D0A; font-family:monospace; font-size:larger;} a {color:#FF7D0A;}</style>
     <body>
@@ -13,4 +14,21 @@
             });
         </script>
     </body>
+=======
+<html>
+    <style>body {color:#FF7D0A; font-family:monospace; font-size:larger;} a {color:#FF7D0A;}</style>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <div id='content'></div>
+        <script>
+            var param = new URLSearchParams(window.location.search);
+            var filename = '/' + param.get('file');
+            fetch(filename)
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('content').innerHTML = marked(text);
+            });
+        </script>
+    </body>
+>>>>>>> 30d4e29... .
 </html>
