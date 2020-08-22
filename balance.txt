@@ -1,11 +1,10 @@
-## things to cast before the pull
+### things to cast before the pull
 actions.precombat=moonkin_form
 actions.precombat+=/wrath
 actions.precombat+=/wrath
 actions.precombat+=/starsurge,if=spell_targets.starfall<4
 
-
-## decide action list based on situation
+### decide action list based on situation
 actions=variable,name=is_aoe,value=spell_targets.starfall>1
 actions+=/berserking,if=buff.ca_inc.up&!cooldown.convoke_the_spirits.up
 actions+=/use_items
@@ -14,8 +13,7 @@ actions+=/run_action_list,name=boat,if=runeforge.balance_of_all_things.equipped
 actions+=/run_action_list,name=aoe,if=variable.is_aoe
 actions+=/run_action_list,name=st
 
-
-## Single target action list called when fighting 1 target. All action lists are mostly similar and can be combined but they are far easier to read when split up.
+### Single target action list called when fighting 1 target. All action lists are mostly similar and can be combined but they are far easier to read when split up.
 #### Refresh dots unless ca/inc, the venthyr buff or the kyrian buff is about to fall off to make sure all asp is spend
 actions.st=moonfire,target_if=refreshable&time_to_die>18,if=(buff.ca_inc.remains>5&buff.ravenous_frenzy.remains>5|!buff.ca_inc.up)&!buff.kindred_empowerment_energize.up&ap_check
 actions.st+=/sunfire,target_if=refreshable&time_to_die>18,if=(buff.ca_inc.remains>5&buff.ravenous_frenzy.remains>5|!buff.ca_inc.up)&!buff.kindred_empowerment_energize.up&ap_check
@@ -62,8 +60,7 @@ actions.st+=/starfire,if=eclipse.in_lunar|eclipse.solar_next|eclipse.any_next|bu
 #### Use wrath otherwise which is is solar eclipse, ca/inc or to proc lunar eclipse.
 actions.st+=/wrath
 
-
-## AoE action list called on 2+ targets. 
+### AoE action list called on 2+ targets. 
 #### Refresh moonfire if ca/inc is ready or there are less than 3 targets or less than 5 and you are in solar eclipse or lunar eclipse is next. Also don't refresh during kindred empowerment and don't overcap asp
 actions.aoe=moonfire,target_if=refreshable&time_to_die>18,if=(cooldown.ca_inc.ready|spell_targets.starfall<3|(eclipse.lunar_next|eclipse.any_next|eclipse.in_solar)&(spell_targets.starfire<5*(1+talent.twin_moons.enabled)))&!buff.kindred_empowerment_energize.up&ap_check
 #### Refresh sunfire unless ca/inc has less than 10secs remaining and you won't overcap asp
@@ -111,8 +108,7 @@ actions.aoe+=/starfire,if=buff.eclipse_lunar.up|eclipse.solar_next|buff.eclipse_
 #### This line only becomes active to proc lunar eclipse
 actions.aoe+=/wrath
 
-
-## Special action list for dreambinder. Has a lot of similarities but also a lot of extra checks for dreambinder. Biggest difference is the moving of starsurge/Starfall much higher in the action list and every action making sure that the buff won't fall off
+### Special action list for dreambinder. Has a lot of similarities but also a lot of extra checks for dreambinder. Biggest difference is the moving of starsurge/Starfall much higher in the action list and every action making sure that the buff won't fall off
 #### Calculates whether starsurge/Starfall will have to be used to keep up the buff. Uses the gcd during solar eclipse and the starfire execute time during lunar eclipse and the relevant cast for the next eclipse depending on st/aoe. Also returns true if the buff isn't up
 actions.dreambinder=variable,name=safe_to_use_spell,value=(buff.timeworn_dreambinder.remains>gcd.max&spell_targets.starfire=1&!eclipse.in_lunar&!eclipse.solar_next&!eclipse.any_next|buff.timeworn_dreambinder.remains>action.starfire.execute_time&(spell_targets.starfire>1|eclipse.in_lunar|eclipse.solar_next|eclipse.any_next))|!buff.timeworn_dreambinder.up
 #### Similar to the aoe action list, calculates if a starsurge won't make starfall fall off and includes the dreambinder cost reduction
@@ -164,8 +160,7 @@ actions.dreambinder+=/starfire,if=eclipse.in_lunar|eclipse.solar_next|eclipse.an
 #### Procs lunar eclipse 
 actions.dreambinder+=/wrath
 
-
-## Special action list for Balance of All Things (BoAT)
+### Special action list for Balance of All Things (BoAT)
 actions.boat=variable,name=critnotup,value=!buff.balance_of_all_things_nature.up&!buff.balance_of_all_things_arcane.up
 actions.boat+=/moonfire,target_if=refreshable&time_to_die>18,if=(cooldown.ca_inc.ready|(eclipse.lunar_next|eclipse.any_next|eclipse.in_solar)&(spell_targets.starfire<5*(1+talent.twin_moons.enabled)))&ap_check&(variable.critnotup|cooldown.ca_inc.ready&(astral_power<30|!covenant.night_fae))&!buff.kindred_empowerment_energize.up&(buff.starfall.remains>gcd.max|astral_power<50|!variable.is_aoe)
 #### sunfire when crit legi isnt active, ca/inc isnt up or has 10+secs remaining and you wouldnt lose the dreambinder buff
