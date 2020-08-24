@@ -13,10 +13,30 @@ post_url = 'https://mimiron.raidbots.com/sim'
 get_url = 'https://mimiron.raidbots.com/api/job/'
 report_url = 'https://mimiron.raidbots.com/simbot/report/'
 
-profile = apl = sets = ""
+profile = apl = sets = mplus = ""
 
-covs = ['kyrian', 'night_fae', 'venthyr', 'necrolord']
-legs = {'oneth':7087, 'pulsar':7088, 'dream':7108, 'lycaras':7110, 'boat':7107}
+covs = []
+legs = {}
+
+with open('leg_x_cov.txt', 'r') as fp:
+    while line_ := fp.readline():
+        if line_[0] == '#':
+            continue
+        split_ = line_.split('=')
+        if split_[0] == 'covenant':
+            covs.append(split_[1].strip('\"\n'))
+            continue
+        if line_ == '\n':
+            line_1 = fp.readline()
+            if line_1[0] == '#':
+                continue
+            key_ = line_1.split(',')[0].split('-')[-1]
+            line_2 = fp.readline()
+            if line_2[0] == '#':
+                continue
+            value_ = line_2.split('=')[-1]
+            legs[key_] = int(value_)
+            continue
 
 with open('sandbag.txt', 'r') as fp:
     profile = fp.read()
@@ -27,12 +47,20 @@ with open('balance.txt', 'r') as fp:
 with open('talent_profiles.txt', 'r') as fp:
     sets = fp.read()
 
+with open('mplus.txt', 'r') as fp:
+    mplus = fp.read()
+
 buffer = {}
 
 for cov in covs:
     for leg, bonus in legs.items():
         name = cov + ' - ' + leg
-        simc = profile + '\ntarget_error=0.1\ndesired_targets=' + targets + '\n\ntalents=0000000\ncovenant=' + cov + '\n\ntabard=,id=31405,bonus_id=' + str(bonus) + '\n\nname=\"' + name + '\"\n\n' + apl + sets
+        if args.targets == 0:
+            target_str = 'target_error=0.2\n' + mplus
+        else:
+            target_str = 'target_error=0.1\ndesired_targets=' + targets
+
+        simc = profile + '\ntalents=0000000\ncovenant=' + cov + '\n\ntabard=,id=31405,bonus_id=' + str(bonus) + '\n\nname=\"' + name + '\"\n\n' + target_str + '\n\n' + apl + sets
 
         post = requests.post(post_url, json={'type': 'advanced', 'apiKey': apikey, 'advancedInput': simc})
         reply = post.json()
