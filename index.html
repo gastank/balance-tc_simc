@@ -3,16 +3,16 @@
     <script>
       function resetTitle() {
         let title = document.getElementById('simtitle');
-        title.textContent = 'Detailed Sims by Talents';
+        title.textContent = 'Frequently Asked Questions';
       }
       function setTitle(str) {
         let title = document.getElementById('simtitle');
         title.textContent = str;
       }
       (async () => {
-        const response = await fetch('https://api.github.com/repos/dreamgrove/dreamgrove/contents/static/beta/');
+        const response = await fetch('https://api.github.com/repos/balance-simc/Balance-SimC/contents/');
         const data = await response.json();
-        let htmlString = '<ul style=\"font-family:monospace; font-size:large;\">';
+        let htmlString = '<ul style=\"font-family:monospace; column-count:2;\">';
         for (let file of data) {
           let ext = file.name.split('.').pop();
           if (ext == 'txt' || ext == 'rar') {
@@ -44,25 +44,27 @@
     <style>body {background-color:#242424; color:#FF7D0A;} a {text-decoration:none; color:#FF7D0A;} ul {margin:0;} option, select {color:#FF7D0A; background-color:#242424; font-family:monospace; font-size:large;}</style>
     <div style="display:flex">
       <div stype="display:flex; flex-direction:column;">
-        <div><b>Legendary x Covenant</b> <span style="font-family:monospace;">targets:</span>
+        <div><b>Legendary x Covenant&nbsp;</b>
           <select id="targets" onchange="changeTarget(this)">
-            <option value="by_combo_1.html">1</option>
-            <option value="by_combo_2.html">2</option>
-            <option value="by_combo_3.html">3</option>
-            <option value="by_combo_4.html">4</option>
-            <option value="by_combo_5.html">5</option>
-            <option value="by_combo_0.html">M+</option>
+            <option value="by_combo_1.html">1 Target</option>
+            <option value="by_combo_2.html">2 Targets</option>
+            <option value="by_combo_3.html">3 Targets</option>
+            <option value="by_combo_4.html">4 Targets</option>
+            <option value="by_combo_5.html">5 Targets</option>
+            <option value="by_combo_-1.html">1T Move</option>
+            <option value="by_combo_0.html">Dungeon</option>
           </select>
         </div>
-        <div><iframe id="frame2" src="by_combo_1.html" style="border:none; font-family:monospace; font-size:large; width:44ch; height:28em;"></iframe></div>
-        <div style="text-align:center; font-size:larger; margin-top:1em; margin-bottom:0.5em;"><a style="text-decoration:underline;" href="md.html?file=faq.txt" target="simframe" onclick="setTitle('Frequently Asked Questions')"><b>FAQ (click here for what's new)</b></a></div>
-        <div style="text-align:center; font-size:larger; margin-top:0.5em; margin-bottom:0.5em;"><a style="text-decoration:underline;" href="md.html?file=balance.txt" target="simframe" onclick="setTitle('Balance APL')"><b>Shadowlands BETA Balance APL</b></a></div>
-        <div style="text-align:center; font-size:larger; margin-top:0.5em; margin-bottom:1em;"><a style="text-decoration:underline;" href="https://forms.gle/agYZeEkPCaonyJf5A"><b>Bugs/Improvements/Questions</b></a></div>
+        <div><iframe id="frame2" src="by_combo_1.html" style="border:none; font-family:monospace; font-size:large; width:44ch; height:88ex;"></iframe></div>
+        <div style="text-align:center; font-size:larger; margin-top:0; margin-bottom:0.25em;"><a style="text-decoration:underline;" href="md.html?file=faq.txt" target="simframe" onclick="setTitle('Frequently Asked Questions')"><b>Frequently Asked Questions</b></a></div>
+        <div style="text-align:center; font-size:larger; margin-top:0; margin-bottom:0.25em;"><a style="text-decoration:underline;" href="md.html?file=balance.txt" target="simframe" onclick="setTitle('Balance APL')"><b>Shadowlands BETA Balance APL</b></a></div>
+        <div style="text-align:center; font-size:larger; margin-top:0; margin-bottom:0.25em;"><a style="text-decoration:underline;" href="https://github.com/balance-simc/Balance-SimC/issues/new/choose"><b>Bugs/Improvements/Questions</b></a></div>
+        <div style="text-align:center; font-size:larger; margin-top:0; margin-bottom:0.25em;"><a style="text-decoration:underline;" href="by_talent.html" target="simframe" onclick="setTitle('Detailed Sims by Talents')"><b>Detailed Sims by Talents</b></a></div>
         <div id="dir"></div>
       </div>
       <div style="display:flex; flex-direction:column; height:97vh">
-        <div><b><span id="simtitle">Detailed Sims by Talents</span></b> <a href="by_talent.html" target="simframe" style="font-family:monospace; text-decoration:underline;" onclick="resetTitle()">reset</a></div>
-        <iframe name="simframe" src="by_talent.html" style="border:none; height:100%; width:1280px; margin-top:5px" onload="changeFrame(this)"></iframe>
+        <div><b><span id="simtitle">Frequently Asked Questions</span></b></div>
+        <iframe name="simframe" src="pivot.html" style="border:none; height:98%; width:1260px; margin-top:5px" onload="changeFrame(this)"></iframe>
       </div>
     </div>
   <body>
