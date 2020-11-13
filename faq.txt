@@ -1,56 +1,70 @@
+## Updated November 13th <a href="https://github.com/balance-simc/Balance-SimC/commits/master/faq.txt" target="_top">(changelog)</a>
+
 1. What's new?
-    * Legendary & covenant changes from the August 19th build 9.0.1.35598 are included.
-    * Some conduits are included. See below for details.
-    * Random targets encounter approximation is added as 'M+' in the target dropdown. See below for details.
-
-1. What is the '*M+*' selection in the target dropdown?
-    * This is an *unoptimized, very crude approximation* of a random dungeon-like encounter. The details can be found in [mplus.txt](mplus.txt). It consists of:
-        * ~360s total fight time
-        * ~130s to ~150s fighting one mob
-        * ~30s to ~50s fighting a wave of 3 to 7 mobs, each wave random and repeating until the end of the fight
-
-1. What about conduits?
-    * All sims include the covenant specific conduits (except for Kyrian) and the Fury of the Skies conduit at base rank.
-    * The other potency conduits at current tuning contribute less than 1% and are not worth simming.
-    * The Kyrian conduit can desync Kindred Spirits from other CDs so is not worth simming.
-
-1. What about soulbinds?
-    * Soulbinds are not yet fully implemented in SimC.
+    * NEW LAYOUT! All combinations of covenants, legendaries, soulbinds, conduits, traits, and talents are available. You can adjust the layout, filters, and chart displays however you want.
+    * Use the [Report Issue](https://github.com/balance-simc/Balance-SimC/issues/new/choose) link for any issues/questions/suggestions.
+    * All hotfixes up to November 12th are included.
+    * [Quick guide on how to use the pivot charts](https://pivottable.js.org/images/animation.gif)
 
 1. How does SimC handle Convoke the Spirits (Night Fae)?
-    * SimC assumes it will cast 2 healing spells, 1 Starfall if it isn't up, 1 Moonfire if you have a target without it, then balance out the remaining between Starsurge, Wrath, and Moonfire on any further un-dotted targets.
+    * Convoke the Spirits will cast:
+        - 3 to 5 heals
+        - Chance to cast Starfall if it's not up with a weight of 1.0
+        - Chance to cast Moonfire if it's not up with a weight of 0.3
+        - Chance to cast Starsurge with a weight of 0.3
+        - Chance to cast Wrath with a weight of 0.4
+        - 20% chance to replace a damage spell with Full Moon
 
 1. How does SimC handle Kindred Spirits (Kyrian)?
-    * SimC assumes that you are bonding with someone who does the exact same damage as you. The additional damage done by you AND your partner are attributed to you.
+    * SimC makes the following assumptions:
+        - You are bonding with someone who does the exact same damage as you
+        - 15% of the pool is lost from taking damage
+        - The additional damage done by you AND your partner are attributed to you
+
+1. What is the base profile used in the sims?
+    * The base character can be found in [sandbag.txt](sandbag.txt).
+    * All items are from Mythic Castle Nathria.
+    * Full 6 mastery gems are socketted and all available enchants are applied.
+    * Legendary items are set to ilevel 235 with Haste & Mastery.
+    * All raid buffs and consumables are used.
+    * 'Smart Sim' setting is used for each set of talents with a fixed covenant & legendary. This means that for each covenant & legendary combo, the talents that sim highest will be more accurate than the talents that sim the lowest.
+
+1. What is the '1T Move' selection in the target dropdown?
+    * This is a ***LARGELY UNOPTIMIZED APPROXIMATION*** of a light movement encounter. The simc raid_events can be found in [move.txt](move.txt). It consists of:
+        * Each movement has a random distance of 20yd to 30yd
+        * Movement starts when boss health reaches 95%
+        * Movement repeats every ~30s to ~60s
+    * There is no optimization of pooling and planning for movement
+    * Fallback casts during movement are:
+        * Starsurge if Balance of All Things is not equipped
+        * Sunfire and Moonfire, starting with the lowest remaining duration
+
+1. What is the 'Dungeon' selection in the target dropdown?
+    * This is an ***UNOPTIMIZED, VERY CRUDE APPROXIMATION*** of a random dungeon-like encounter. The simc raid_events can be found in [dungeon.txt](dungeon.txt). It consists of:
+        * Random light movement as per the '1T Move' script
+        * ~450s total fight time
+        * ~130s to ~150s fighting one mob
+        * ~30s to ~50s fighting a wave of 3 to 7 mobs, each wave random and repeating until the end of the fight
+        * Random 0s to ~20s wait after each fight
+
+1. What about bugs on the Beta/PTR? Which are assumed to be fixed for the sims?
+    * The following bugs are present in the game AND in SimC
+        - Niya's Tools: Burrs will not do any damage to slow-immune mobs, such as bosses
+    * The following bugs are present in the game but NOT in SimC
+        - Adaptive Swarm will not jump onto an ally that already has a Swarm and will fizzle if there are no other friendly targets.
 
 1. Are the sims updated for _____ ?
     * At the top of the HTML report, in the SimulationCraft banner, you will find the git build code.
     * Goto `http://github.com/simulationcraft/simc/commits/<enter git build code here>` to see all the changes to SimC that have been incorporated into the sim.
 
-1. What are the base stats used in the sims?
-    * The base profile can be found in [sandbag.txt](sandbag.txt)
-
-1. What is the APL used in the sims?
-    * The APL can be found in [balance.txt](md.html?file=balance.txt) ([raw text](balance.txt))
-
 1. How can I run my own beta sims?
-    * Instructions on creating the command line version and how to use it can be found in [how_to_build.txt](md.html?file=how_to_build.txt)
-    * A copy of the command line program can be found as `simc_(date).rar` but this can often be outdated.
-
-1. How do I sim a covenant?
-    * Add the line **covenant=covenant_name**
-
-1. How do I sim a conduit?
-    * Add the line **soulbind=conduit_name:rank/conduit2_name:rank/...**
-
-1. How do I sim a legendary?
-    * Legendary effects are added to gear as a bonus_id. Add the line for a tabard with the legendary effect from [leg_x_cov.txt](leg_x_cov.txt)
+    * Full instructions for building SimC can be found in the SimC wiki <a href="https://github.com/simulationcraft/simc/wiki/HowToBuild" target="_top">HowToBuild</a> page.
 
 1. I found a bug! Something in the sims doesn't line up with what's in game!
-    * Submit an issue report with the [Bugs/Improvements/Questions](https://forms.gle/agYZeEkPCaonyJf5A) link
+    * Submit an issue report with the [Bugs/Improvements/Questions](https://github.com/balance-simc/Balance-SimC/issues/new/choose) link
 
 1. I found improvements to the APL that leads to higher DPS!
-    * Submit an issue report with the [Bugs/Improvements/Questions](https://forms.gle/agYZeEkPCaonyJf5A) link
+    * Submit an issue report with the [Bugs/Improvements/Questions](https://github.com/balance-simc/Balance-SimC/issues/new/choose) link
 
 1. What about _____ ?
-    * Submit an issue report with the [Bugs/Improvements/Questions](https://forms.gle/agYZeEkPCaonyJf5A) link
+    * Submit an issue report with the [Bugs/Improvements/Questions](https://github.com/balance-simc/Balance-SimC/issues/new/choose) link
