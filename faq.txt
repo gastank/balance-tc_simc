@@ -6,7 +6,7 @@
     * All hotfixes up to November 12th are included.
     * Quick guide on how to use the pivot charts:
 
-![](https://pivottable.js.org/images/animation.gif)
+<img src="https://pivottable.js.org/images/animation.gif" style="width:200px;"/>
 
 1. How does SimC handle Convoke the Spirits (Night Fae)?
     * Convoke the Spirits will cast:
