@@ -4,7 +4,8 @@
     * NEW LAYOUT! All combinations of covenants, legendaries, soulbinds, conduits, traits, and talents are available. You can adjust the layout, filters, and chart displays however you want.
     * Use the [Report Issue](https://github.com/balance-simc/Balance-SimC/issues/new/choose) link for any issues/questions/suggestions.
     * All hotfixes up to November 12th are included.
-    * ![Quick guide on how to use the pivot charts](https://pivottable.js.org/images/animation.gif)
+    * Quick guide on how to use the pivot charts:
+      ![](howtouse.gif)
 
 1. How does SimC handle Convoke the Spirits (Night Fae)?
     * Convoke the Spirits will cast:
