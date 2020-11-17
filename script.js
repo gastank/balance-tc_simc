@@ -54,8 +54,8 @@ $(function() {
 
     function simcInput(r) {
         let buf = [];
-        buf.push($.get("balance.txt"));
-        console.log(buf);
+        buf.push($.get("balance.txt").responseText);
+        return buf;
     }
 
     var defaultOptions = {
