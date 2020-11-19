@@ -152,9 +152,10 @@ table.pvtTable tbody tr td {
     text-align: right;
 }
 
-.pvtUnused, .pvtUnused .pvtAttr {
-    color: #727272 !important;
+.pvtUnused, .pvtUnused :not(.pvtFilteredAttribute) .pvtAttr {
+    color: #B8773E !important;
 }
+
 td.pvtUnused, td.pvtVals.pvtUiCell {
     border: 0;
 }
@@ -217,7 +218,9 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
 .pvtHorizList li { display: inline; }
 .pvtVertList { vertical-align: top; }
 
-.pvtFilteredAttribute { font-style: italic }
+.pvtFilteredAttribute {
+    font-style: italic
+}
 
 .pvtFilterBox{
     z-index: 100;
@@ -334,12 +337,13 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
 }
 
 #copied {
-    color: #FF7D0A;
-    background: #1A1A1A;
+    background: #FF7D0A;
+    color: #1A1A1A;
     font-size: 12px;
+    font-weight: bold;
     border-radius: 7px;
     padding: 3px;
-    border: 2px solid #FF7D0A;
+    border: 2px solid #FFF;
     z-index: 9999;
     opacity: 0.90;
     text-transform: capitalize;
@@ -357,14 +361,14 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
 	pointer-events: none;
 }
 #copied:after {
-	border-color: rgba(17, 17, 17, 0);
-	border-left-color: #1A1A1A;
+	border-color: rgba(255, 125, 10, 0);
+	border-left-color: #FF7D0A;
 	border-width: 7px;
 	margin-top: -7px;
 }
 #copied:before {
-	border-color: rgba(255, 125, 10, 0);
-	border-left-color: #FF7D0A;
+	border-color: rgba(17, 17, 17, 0);
+	border-left-color: #FFF;
 	border-width: 10px;
 	margin-top: -10px;
 }
@@ -509,4 +513,17 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
 @keyframes sk-circleFadeDelay {
     0%, 39%, 100% { opacity: 0; }
     40% { opacity: 1; } 
+}
+
+#test {
+    width: 433px;
+    height: 177px;
+    background: url('bearnelf1.png') left center;
+    background-size: cover;
+    animation: play 1s steps(4) infinite;
+    display: inline-block;
+}
+
+@keyframes play {
+    100% { background-position: -1732px }
 }
