@@ -515,15 +515,28 @@ td.pvtUnused, td.pvtVals.pvtUiCell {
     40% { opacity: 1; } 
 }
 
-#test {
-    width: 433px;
-    height: 177px;
+#bear {
+    width: 400px;
+    height: 277px;
     background: url('bearnelf1.png') left center;
     background-size: cover;
-    animation: play 1s steps(4) infinite;
+    animation: bear 1s steps(4) infinite;
     display: inline-block;
 }
 
-@keyframes play {
-    100% { background-position: -1732px }
+@keyframes bear {
+    100% { background-position: -1790px; }
+}
+
+#cat {
+    width: 400px;
+    height: 213px;
+    background: url('cattaur1.png') left center;
+    background-size: cover;
+    animation: cat 1s steps(4) infinite;
+    display: inline-block;
+}
+
+@keyframes cat {
+    100% { background-position: -1675px; }
 }
